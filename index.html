@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NYT Solver</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <!-- Letter Boxed -->
+    <label for="lb-board">Input your Letter Boxed board here:</label>
+    <input 
+      type="text" 
+      id="lb-board" 
+      name="lb-board" 
+      required 
+      maxlength="12"
+      pattern="[a-z]{12}"/>
+    <button type="button" id="submit-lb" name="submit-lb">Submit</button>
+    <!-- <br> -->
+    <p id="lb-solution"></p>
+    
+    <!-- Spelling Bee -->
+    <label for="sb-board">Input your Spelling Bee board here:</label>
+    <input 
+      type="text"
+      id="sb-board"
+      name="sb-board"
+      required 
+      maxlength="7"
+      pattern="[a-z]{7}"/>
+    <label for="sb-center">Center letter:</label>
+    <input 
+      type="text"
+      id="sb-center"
+      name="sb-center"
+      size="1"
+      required 
+      maxlength="1"
+      pattern="[a-z]{1}"/>
+    <button type="button" id="submit-sb" name="submit-sb">Submit</button>
+    <br>
+    <p id="sb-solution-header"></p>
+    <ul id="sb-solution"></ul>
+
+    <!-- Scripts -->
+	  <script src="js/fetch.js"></script>
+    <script src="js/spellingBeeSolver.js"></script>
+    <script src="js/letterBoxedSolver.js"></script>
+    <!-- <script src="js/test.js"></script> -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
