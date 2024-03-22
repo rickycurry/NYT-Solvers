@@ -2,6 +2,7 @@ html {
     background-color: #121212;
 }
 
-label, p, h3, li {
+label, p, li {
     color: white;
+    font-family: sans-serif;
 }
