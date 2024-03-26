@@ -2,6 +2,7 @@ let dictionary;
 
 async function main() {
     dictionary = await fetchDict();
+    fetchGame();
     attachToInput();
 }
 
@@ -16,6 +17,9 @@ function attachToInput() {
                 submitLBButton.click();
             }
         });
+    const hintLBButton = document.getElementById("hint-lb");
+    const hintLBFunc = function () { processInputAndSolveLBInternal(dictionary, true); };
+    hintLBButton.onclick = hintLBFunc;
 
     const submitSBButton = document.getElementById("submit-sb");
     const submitSBFunc = function () { processInputAndSolveSBInternal(dictionary); };

@@ -1,6 +1,7 @@
 async function fetchGame() {
-  const response = await fetch("http://cors-anywhere.herokuapp.com/https://www.nytimes.com/puzzles/letter-boxed");
-  console.log(response);
+  const response = await fetch("https://www.nytimes.com/puzzles/letter-boxed", {mode: 'cors'});
+  const text = await response.text();
+  console.log(text);
 }
 
 async function fetchDict() {

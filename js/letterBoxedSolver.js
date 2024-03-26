@@ -68,8 +68,9 @@ const solveLB = function solveLetterBoxed(sides, dictionary) {
  * Solves the Letter Boxed game described by the relevant HTML elements.
  * The solution is appended to the document so the user can see it.
  * @param {Object} dictionary 
+ * @param {Bool} hint
  */
-function processInputAndSolveLBInternal(dictionary) {
+function processInputAndSolveLBInternal(dictionary, hint = false) {
     /** @type {String} */
     const boardInput = document.getElementById("lb-board").value.toLowerCase();
     if (boardInput.length !== 12) {
@@ -86,6 +87,7 @@ function processInputAndSolveLBInternal(dictionary) {
 
     const solution = solveLB(board, dictionary);
     const solutionHTML = document.getElementById("lb-solution");
+    const hintHTML = document.getElementById("lb-hint");
     if (solution.length === 0) {
         solutionHTML.innerText = `Unfortunately we could not generate a two-word solution 
             to this puzzle. This is most likely due to discrepancies between the NYT 
@@ -94,7 +96,22 @@ function processInputAndSolveLBInternal(dictionary) {
             Alternatively, you may be using a browser that doesn't support the JS
             Set.prototype.union method. Recent versions of Chrome, Edge, and Safari
             do support this method, so try one of those browsers.`;
+        return;
     } else {
-        solutionHTML.innerText = `Our solution: ${solution}`;
+        const previousSolution = solutionHTML.innerText;
+        const newSolutionText = `Our solution: ${solution}`;
+        if (previousSolution !== newSolutionText) {
+            hintHTML.innerText = ""; // Reset state so that if the user plays a subsequent board, hints are functional.
+        }
+        solutionHTML.innerText = newSolutionText;
+    }
+
+    solutionHTML.hidden = hint;
+    if (hint) {
+        if (hintHTML.innerText === "") {
+            hintHTML.innerText = `Hint: the first word starts with ${solution[0][0].toUpperCase()}. Click the Hint button again for one more hint.`;
+        } else {
+            hintHTML.innerText = `Hint: the first word starts with ${solution[0][0].toUpperCase()} and ends with ${solution[1][0].toUpperCase()}.`;
+        }
     }
 }
